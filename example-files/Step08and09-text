@@ -1,0 +1,15 @@
+##### Section 6 | Step 08 & Step 09 -  Implementing GET Methods for User Resource & POST Methods to create user.
+
+In this step 8, we will first create a user resource and implement GET methods.
+We'll do a configuration change to treat date as date rather than as a timestamp. If we check the network tab, we can see
+that for successful response, we see a status of 200, that's what a spring MVC framework does by default.
+
+In this step 9, we will use post mapping to create users.
+For POST requests, we'd want to be more specific in terms of status code. We'd want to return a status code called created.
+// input -> details of user
+// output -> CREATED & Return the created URI
+What we want to do is, once we get a request with the body, we'd need to map it to a user. So, the input for this is user
+object. So say that this is the body of the request, we use @RequestMapping annotation on the parameter.
+
+To be able to execute a POST request, we need a simple REST client (POSTMAN) or we can do this from command line as well.
+
