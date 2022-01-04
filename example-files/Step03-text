@@ -1,0 +1,27 @@
+##### Section 6 | Step 03 - Creating a sample Hello World Service
+
+In this step, we'd create a simple REST controller which would retain some hard-coded things. This is like a hello world
+restful web service. Let's just call it a service with some text. We'll create a new controller class. In this class, we'll
+create a method which would return "hello world".
+
+whenever we create a REST service, we'd need to define two things:
+1. What method? --> GET
+2. What uri?  --> /hello-world
+
+One of the first things, that you need to tell spring that this is a controller using controller annotation before the class.
+So, it will be a controller in the sense that it will be handling HTTP requests. And then we can start with the creation
+of the method.
+
+After telling that this is a controller we need to map a GET uri of this hello world to this controller. We'd want to tell
+Spring MVC that this is going to handle REST requests. How do we do that? We will do that by using something called rest
+controller annotation -> @RestController. Now, this becomes a controller which can handle REST requests.
+
+Next thing is mapping of GET uri. One of the ways of doing that is to create a request mapping. So, with @RequestMapping
+annotation, we can define what is the request method and uri that we want to use.
+-> @RequestMapping(method = RequestMethod.GET, path = "/hello-world")
+
+Now, go ahead and start the application. And when we type "localhost:8080/hello-world" in the browser,
+we'll see Hello World.
+
+We can further improve this mapping, by replacing @RequestMapping(method, path) with @GetMapping(path), similar to this
+we have other mappings as well @PostMapping, @PutMapping, @DeleteMapping
