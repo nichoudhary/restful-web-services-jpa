@@ -1,0 +1,4 @@
+##### Section 6 | Step 06 -  Enhancing HelloWorld Service with a Path Variable
+
+In this step, we'll create another simple hello world request with a path parameter -> /hello-world/path-variable/{name}
+For this we need to add an annotation called (@PathVariable String name) in the method parameter.
