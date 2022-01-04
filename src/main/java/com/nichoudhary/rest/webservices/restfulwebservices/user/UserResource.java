@@ -1,6 +1,8 @@
 package com.nichoudhary.rest.webservices.restfulwebservices.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -21,12 +23,22 @@ public class UserResource {
     }
 
     @GetMapping("/users/{id}")
-    public User retrieveUser(@PathVariable int id) {
+    public EntityModel<User> retrieveUser(@PathVariable int id) {
         User user = service.findOne(id);
         if(user == null) {
             throw new UserNotFoundException("id-" + id);
         }
-        return user;
+
+        //HATEOAS
+        //"all-users", SERVER_PATH + "/users (this is hard-coded style, should not follow this step)
+        //retrieveAllUsers
+        //Creating an entity model wherein we'll add the user which has to be returned + link to all users
+        EntityModel<User> resource = EntityModel.of(user);
+        //This WebMvcLinkBuilder enables us to build link from a method
+        WebMvcLinkBuilder linkTo = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(this.getClass()).retrieveAllUsers());
+        resource.add(linkTo.withRel("all-users"));
+
+        return resource;
     }
 
     // input -> details of user

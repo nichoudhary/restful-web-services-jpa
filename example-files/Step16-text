@@ -1,0 +1,23 @@
+##### Section 6 | Step 16 - Implementing HATEOS for RESTful Web Services
+
+So, now in this step -
+When I am asked for a resource, I'll not just give a specific resource back. What I'll do is, I'll also give other resources
+which might be useful. For eg, when the requests come for /users/1, I'll also also give a link to the users so that the client
+can get all user details from there. This concept is called HATEOAS. HATEOAS (Hypermedia As The Engine Of the Application State).
+
+So here, for retrieve user and we will use HATEOAS concepts here. What we want to do is when a retrieve user is called, we'd
+also want to return a link for the users. So when a request comes for /user/{id}, we'd return the data for that particular
+user as well as how you can get the data for all the users. We'd need to add a dependency as well for starting with this.
+Add a dependency -> spring-boot-starter-hateoas. This dependency would enable us to add links to our resources easily.
+
+//HATEOAS
+        //"all-users", SERVER_PATH + "/users (this is hard-coded style, should not follow this step)
+        //retrieveAllUsers
+        //Creating an entity model wherein we'll add the user which has to be returned + link to all users
+        EntityModel<User> resource = EntityModel.of(user);
+        //This WebMvcLinkBuilder enables us to build link from a method
+        WebMvcLinkBuilder linkTo = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(this.getClass()).retrieveAllUsers());
+        resource.add(linkTo.withRel("all-users"));
+
+
+
