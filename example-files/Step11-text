@@ -1,0 +1,21 @@
+##### Section 6 | Step 11 - Implementing Exception Handling - 404 Resource Not Found
+
+One of the key fact about creating resources/objects/things is returning correct response status back. In the prev step,
+we returned proper response of created on creation of resources. However, what would happen if something goes wrong? when
+a user is not found? What should be the response that should be returned back?
+
+Execute a request for a user which doesn't exist - GET http://localhost:8080/users/500, we will 200 OK successful status
+with an empty body. Even though the resource doesn't exist, we are sending a successful response back. That's a very bad
+practice.
+
+Let's fix that...
+
+To return a specific response status code during exception, we can map the specific exception class to return that particular
+response code using @ResponseStatus(HttpStatus.NOT_FOUND) annotation.
+
+One of the things that we'd always need to remember is it's important to have consistent exception message which is returned
+back for all the services inside your enterprise. If you have big organization and each of the services returns the exception
+messages in a different way then it's not good. There should be a standard exception structure which should be followed across
+all RESTful services.
+
+
