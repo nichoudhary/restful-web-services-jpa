@@ -1,4 +1,6 @@
 ##### Section 6 | Step 14 - Implementing DELETE Method to delete a user resource.
 
-
+Here, if the correct user_id is sent for deletion, it will return a successful response. If id is incorrect, it will send 404 User
+Not Found Exception. In case of any other exceptions, it will automatically get mapped to the exception handler and it will
+send 500 Internal Server error.
 
