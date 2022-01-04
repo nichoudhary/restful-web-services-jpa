@@ -1,0 +1,13 @@
+##### Section 6 | Step 18 - Part2 : Internationalization
+
+Simplify the Internationalization implementation that we've done earlier.
+Instead of proving locale in the requestHeader [@RequestHeader(value = "Accept-Language", required = false) Locale locale]
+we can directly use LocaleContextHolder.getLocale() as if locale was to be used in every request as header then
+appending the RequestHeader(.....) in every method would be a very tedious task.
+
+One other things we need to fix is instead of SessionLocaleResolver, we need to use AcceptHeaderLocaleResolver.
+
+Also, as we are using ResourceBundleMessageSource to set messageSource.setBasename("messages"). We can remove this whole
+method and directly set this property in application.properties.
+
+
