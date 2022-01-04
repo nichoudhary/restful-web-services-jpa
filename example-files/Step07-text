@@ -1,0 +1,11 @@
+##### Section 6 | Step 07 -  Creating User Bean and User Service
+
+Now we'd start shifting our attention to creating the real resources, users and posts. What we'll do is, in the initial part
+of the course we'll use a static array list to represent all about data. We'll not talk to a database. After learning about
+JPA, we'll convert all our resources to use JPA and storing it to in-memory database.
+
+So, after we've created a User class, to manage the user we will create something called user DAO. User DAO The user DAO would
+be something which would be usually talking to the database and getting the details back. But right now in this example, we will
+use a static array list in the user DAO service.
+
+Since we want this user dao service to be managed by spring, we will put @component annotation to this.
