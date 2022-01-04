@@ -1,0 +1,23 @@
+##### Section 6 | Step 19 - Configuring Auto Generation of Swagger
+
+Let's say we want to share our Restful services with our consumers. If the client asks what does the contract offer your
+services? How would they know what would be the response/request format? In SOAP we had wizdler but in RESTful services
+there is no standard. What we'd be using in this type is something called swagger. Swagger is one of the popular documentation
+format for RESTful services in the state. We'll look at how to document our services using swagger. All that we need to do
+is we need to add in a couple of swagger dependencies. -> springfox-swagger2
+
+After we've added the dependencies, we need to configure swagger class. Things we need to do in this class.
+-> Tell this is a configuration class
+-> Enable swagger for this class
+-> Define a Docket bean in this class
+    -> In this bean we need to configue
+    ---> swagger2
+    ---> All the paths
+    ---> All the apis
+
+After doing all this, re-start the service and goto:
+ http:localhost:8080/v2/api-docs
+ http:localhost:8080/swagger-ui/index.html or http:localhost:8080/swagger-ui
+
+// Added this to application.properties to resolve Null Pointer Exception due to some kind of dependency conflict.
+-> spring.mvc.pathmatch.matching-strategy=ant_path_matcher
