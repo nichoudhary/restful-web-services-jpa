@@ -1,0 +1,25 @@
+##### Section 6 | Step 10 - Enhancing POST Method to return correct HTTP Status Code and Location
+
+In this step, we will return the status of user created. It is a good practice to return a status called created whenever we
+want to return the fact that a resource is created.
+
+Another thing is that the client doesn't know the id of the user created as we are not sending him that detail.
+
+First thing, to set the return status as created, we will use something called response entity. Response Entity is something
+which is already part of the Spring Framework. If you look at the response entity, it's basically a extension of HTTP entity.
+However, additional thing which we can return with this is status code. When we use the created method in response entity,
+we'd be able to pass in what was the location of the resource which was created.
+
+Now, how do I create the URI for the location of the resource/object that is being created? There is something called
+ServletUriComponentsBuilder
+
+Now we will use -
+URI location =
+ServletUriComponentsBuilder.
+fromCurrentRequest().                --> /user
+path("/{id}").                       --> /user + /{id}
+buildAndExpand(savedUser.getId()).   --> to replace id with actual id of the saved user
+toUri();                             --> to convert it to the uri = /user/4
+
+The resulting location will now be returned as http://localhost:8080/users/4 in the header of the response.
+
