@@ -1,0 +1,26 @@
+##### Section 6 | Step 19 - Content Negotiation Implementing Support for XML
+
+In this step, we'll understand about an important concept called content negotiation.
+We talked about the fact that in REST resources are the most important things and these resources can have multiple representations.
+Until now in all our examples we have been using JSON. However, let's say we'd want a XML representation of a specific resource.
+How do we do that?
+
+Until now, we have been executing a lot of get requests, right? When we execute the Get Request we get the content back.
+Where are we specifying that it's JSON? Actually, we are not. So if you look at the headers we are not really specifying
+what we would want to accept. So let's now say "accept" - "application/JSON" in the header and click send. We'd get the
+same response back. Now let's now say "accept" - "application/XML" and click send. We will get the status code 406 - Not
+Acceptable. It's saying is the requested resource is only capable of generating content according to the accept headers
+sent in the request. What it means is this XML, application/xml is not a valid accept header. It doesn't support XML currently.
+All the binding from JSON to objects and objects to JSON is happening through something called Jackson which would be there
+in the dependency (transitive).
+
+There's another simple dependency which we can add in here which can help us with handling the XML -> jackson-dataformat-xml.
+After adding this dependency when we add "accept" - "application/XML" in header with the request. It gives us content in
+XML format as well.
+
+Comment out the xml dependency added because :
+PROBLEM: Browsers give preference to XML over JSON (They send Accept header with application/xml).
+However, people seeing responses with JSON in the browser (For most people REST = JSON)
+
+
+
