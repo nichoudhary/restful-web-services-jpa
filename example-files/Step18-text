@@ -1,0 +1,36 @@
+##### Section 6 | Step 18 - Internationalization for RESTful Services
+
+Internationalization (I18n) it is nothing but customizing your services for different people around the world. Let's look at
+the hello world example.
+
+@GetMapping(path = "/hello-world-internationalized")
+    public String helloWorldInternationalized() {
+        return "Good Morning";
+    }
+
+Now in the above example we can see that for this request, the user will get a response of "Good Morning". It doesn't matter
+where the request is coming from. However, let's say it's coming from France / Netherlands. We can't say Good Morning to
+everybody. We should say Bon Jour or in their Native language.
+
+Internationalization might be a complex logic especially if you have the databases also to be internationalized. In this
+example, we'll look at simple data from the messages, which is going to be internationalized.
+
+////Configuration
+-LocaleResolver
+    -Default Locale - Locale.US
+-ResourceBundleMessageSource
+
+///Usage
+-Autowired MessageSource
+-@RequestHeader(value = "Accept-Language", required = false) Locale locale
+-messageSource.getMessage("helloWorld.message", null, locale)
+
+What we'll do is we'll need to configure a few things, will configure something called the local resolver. And we would a
+lso customize a resource bundle. So we would want to have a list of properties which will be internationalized
+and we would want to store them in something called Resource Bundle. It is a message source is a spring MVC concept,
+or actually it's a spring concept for handling your properties. And after that, when we update the controller, you'd see
+that we would need to use something called Message source and we'd use a header called "Accept-Language"
+
+Let's get started with the implementation.
+
+
