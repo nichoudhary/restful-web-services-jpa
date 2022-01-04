@@ -1,0 +1,32 @@
+##### Section 6 | Step 12 - Implementing Generic Exception Handling for all Resources.
+
+In the prev step we saw that when we executed a request for a user which doesn't exist. We got a response of 404 not found
+in a specific format. This is a default format provided by Spring MVC.
+{
+    "timestamp": "2022-01-04T14:16:44.921+00:00",
+    "status": 404,
+    "error": "Not Found",
+    "trace": "com.nichoudhary.rest.webservices.......
+}
+So, now let's defined a customized generic exception handling structure for our request/resposne.
+We'll create a ExceptionResposne class and in this class, we can create our custom exception structure at most basic level.
+Important thing we'd like to have in this exception class are :
+1. timestamp
+2. message
+3. details
+
+So, now whenever exception happens, we'd want to return exception response in this specific format. How can we do that?
+One of the important classes present in Spring is response entity exception handler. This is an abstract class which can
+be extended to provide centralized exception handling across all the different exception handler methods. So, this one we
+can use as as the base class to provide some default exception handling for all our requests. So, we'll extend this and
+provide a customised exception handling. So, we'll create a new class CustomizedResponseEntityExceptionHandler which will
+extend to base class of Spring ResponseEntityExceptionHandler.
+-> CustomizedResponseEntityExceptionHandler extends ResponseEntityExceptionHandler
+First thing is we need to put @RestController annotation to this class as it is providing response back in case of exceptions.
+This exception handling we'd want to apply to all controllers/resource and we can do this by adding @ControllerAdvice
+annotation. This @ControllerAdvice is a specialization of component for classes that declare methods to be shared across
+multiple controller classes. Look into ControllerAdvice to see for what all cases it can be used for.
+
+We use @ExceptionHandler annotation to define what kind of exceptions it can handle.
+for eg. @ExceptionHandler(Exception.class) -> this means to handle all the exceptions.
+
