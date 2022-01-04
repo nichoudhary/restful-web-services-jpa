@@ -1,0 +1,55 @@
+##### Section 6 | Step 05 - Review of Spring Boot Auto Configuration and DispatcherServlet
+
+In this step we'll see what is happening in the background. So, we created different mappings GET /hello-world and
+GET /hello-world-bean but when we see in the logs, we find that there are additional mappings which are also created
+for eg - /error
+
+When we see the logs, there are few other things which would come up as a question like:
+1. What is dispatcher servlet?
+2. Who is configuring dispatcher servlet?
+3. What does dispatcher servlet do?
+4. How does the HelloWorldBean object converted to JSON?
+5. Who is configuring the error mapping?
+
+To run the application in DEBUG mode, make this change in the application.properties file:
+logging.level.org.springframework = debug
+
+After starting the application in the debug mode, one of the things we can see is Auto Configuration Report which consists
+of a lot of details. While looking at the logs, we can see "DispatcherServletAutoConfiguration matched:", because it found
+a class called dispatcher servlet on the classpath. What is happening here is we added in a starter on spring boot starter
+web and Spring Boot Starter Web has a dependency on spring web MVC framework. Therefore we get the dispatcher servlet class
+in our classpath. That's why Spring Boot Auto Configuration says it found dispatcher servlet in the classpath and so
+let's go ahead and configure the dispatcher servlet.
+
+And the other things is you'd see the ErrorMvcAutoConfiguration, so it says these classes are found in the classpath. So it
+needs to configure an error page as well. So, it's configuring a basicErrorController, errorAttributes and also a
+DefaultErrorViewResolverConfiguration, also a WhitelabelErrorViewConfiguration
+
+In summary all this configuration is getting fired because of something called spring boot auto configuration. Spring Boot
+looks into all the JARS that are there on the classpath and based on them it tries to auto configure different things like
+dispatcher servlet etc. In addition to this, the other things which are auto-configured are things called
+HttpMessageConvertersAutoConfiguration, so these Http message converters are responsible for converting the message to JSON.
+So, what is happening is, something called Jackson to object mapper, so this actually does the conversion from JSON to beans
+and beans to JSON.
+
+Answer to these questions:
+1. What is a dispatcher servlet?
+>> If we look into the logs, we'll see something like "-Mapping servlet: 'dispatcherServlet' to [/]". What is happening here
+is dispatcher servlet is handling all the requests. So this "[/]" is the root of the web application. Whenever we type any url
+in the browser the request would go to dispatcher servlet. This is following a pattern called front-controller. Dispatcher
+Servlet is the front controller for spring web MVC framework. So, the request goes to dispatcher servlet. It knows all the different
+mappings which are present in the application. It knows that hello-world-bean get request is mapped to HelloWorldBean method.
+So, once it receives the request, it determines which is the right controller to execute the request. Once the request is executed
+it would make sure the particular bean is returned back. Once the bean is returned back, the dispatcher servlet looks into how to
+send the response back. So here comes into @RestController annotation in picture. So, something called response body is part of the
+@RestController annotation. So, using this the response is mapped using a message converter into some other format. Here Jackson
+conversion is used and hence it is getting converted into JSON.
+
+2. Who is configuring dispatcher servlet? -> Spring Boot Auto Configuration
+3. What does dispatcher servlet do?
+4. How does the HelloWorldBean object converted to JSON? -> Because of Spring Boot Auto Configuration, because the message
+converters and the Jackson beans are initialized.
+5. Who is configuring the error mapping? -> Spring Boot Auto Configuration, it creates a default error page for us.
+
+
+
