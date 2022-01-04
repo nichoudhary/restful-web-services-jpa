@@ -1,4 +1,4 @@
-##### Section 6 | Step 19 - Configuring Auto Generation of Swagger
+##### Section 6 | Step 20 - Configuring Auto Generation of Swagger
 
 Let's say we want to share our Restful services with our consumers. If the client asks what does the contract offer your
 services? How would they know what would be the response/request format? In SOAP we had wizdler but in RESTful services

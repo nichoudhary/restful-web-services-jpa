@@ -25,7 +25,7 @@ public class SwaggerConfig {
         // All the apis
 
     public static final Contact DEFAULT_CONTACT = new Contact(
-            "Nidhi Choudhary", null, "dummy@gmail.com");
+            "Nidhi Choudhary", "http://in28minutes.com", "dummy@gmail.com");
 
     public static final ApiInfo DEFAULT_API_INFO = new ApiInfo(
             "Awesome API Title", "Awesome API Description", "1.0",
@@ -36,16 +36,11 @@ public class SwaggerConfig {
             new HashSet<>(Arrays.asList("application/json",
                     "application/xml"));
 
-    /*@Bean
+    @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(DEFAULT_API_INFO)
                 .produces(DEFAULT_PRODUCES_AND_CONSUMES)
                 .consumes(DEFAULT_PRODUCES_AND_CONSUMES);
-    }*/
-
-    @Bean
-    public Docket api() {
-        return new Docket(DocumentationType.SWAGGER_2);
     }
 }
