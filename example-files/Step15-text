@@ -1,0 +1,24 @@
+##### Section 6 | Step 15 - Implementing Validations for Restful Services
+
+One of things we can see that we are not doing validations right now. The user has name, birthDate which should be validated.
+In this step we'll look into JAVA Validation API to add validations in our beans. When we get the request to create a user, we
+should validate the content, and if we find it invalid, we need to return a proper response back.
+For this: Add a dependency - spring-boot-starter-validation
+
+Let's get started with this, we'd need to enable validation on user. For that we can @Valid annotation which is present in
+JAVAX Validation API. This is defined by the JAVA validation API. We already have the JAVA Validation API and it's default
+implementation in the classpath because of something called spring boot started web. We can also use other annotations like
+@Size, @Past
+
+Now, after adding validations, if due to wrong input the client gets bad request or any other exception, this should be
+handled by a developer so a proper message is forwarded to the client. One of the thing which happens in this case is
+whenever this validation error occurs an automatic response gets fired from ResponseEntityExceptionHandler's method name
+handleMethodArgumentNotValid. So we will override this method in our customizedResponseEntityException class to provide our
+exception response style.
+
+We would return ex.getBindingResult in the details because this binding result provides details of what went wrong.
+
+// We can look into the details and features provided by JAVA Validation API. It gives so many other features to use other
+than @min and @past. Also, the most popular implementation of validation API is Hibernate Validator.
+
+
