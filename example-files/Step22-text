@@ -1,0 +1,6 @@
+##### Section 6 | Step 22 - Enhancing Swagger Documentation with Custom Annotations
+
+Add @ApiModel(description="All details about the user") in User class so that it can be reflected in the swagger doc
+@ApiModelProperty(notes="min characters 2") for a property level.
+
+We can look into the swagger annotations JAR, it supports much variety of annotations.
