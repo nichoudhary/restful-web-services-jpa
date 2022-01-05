@@ -1,0 +1,18 @@
+##### Section 6 | Step 25 - Implementing Dynamic Filtering for RESTful Service
+
+In this video, we'll explore the idea of dynamic filtering. Let's say for some requests we need to send field1, field2 and
+for other requests we'd want to send field2 and field3. This is where the concept of Dynamic Filtering comes in. With Dynamic
+Filtering we cannot configure filtering directly on the bean. What we need to do is, we need to start configuring the filtering
+where they're retrieving the values. We'll apply filtering in the Filtering Controller itself.
+
+We apply dynamic filtering using a class called MappingJacksonValue(response), in this class we can configure filters.
+
+/*
+        SomeBean someBean = new SomeBean("field1", "field2", "field3");
+        SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter.filterOutAllExcept("field1", "field2");
+        FilterProvider filters = new SimpleFilterProvider().addFilter("SomeBeanFilter", filter);
+        MappingJacksonValue mapping = new MappingJacksonValue(someBean);
+        mapping.setFilters(filters);
+        return mapping;
+
+ */
