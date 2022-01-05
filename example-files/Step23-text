@@ -1,0 +1,43 @@
+##### Section 6 | Step 28 - Monitoring APIs with Spring Boot
+
+We'd want to monitor our service. If our service is failing or application is down, we'd want to know as quickly as possible. We'd want to
+build monitoring around all our APIs, especially when we move into micro-services architectures where apps are built with a number of
+small micro-services. It is very important to have great monitoring around your apps and Spring boot has great support to provide all this
+monitoring very easily. For this we'd need a few dependencies to be added, where one of them is -> spring-boot-starter-actuator. And what
+we'd also be able to do is to look at the services which are provided by actuator in a browser.
+For this we'll add -> spring-data-rest-hal-browser
+
+HAL (Hypertext Application Language) is a specific format. It is a simple format to specify how to hyperlink between your resources in
+your API. The Spring boot actuator APIs are actually are in HAL format. So, what the HAL browser does, it looks into those APIs, identifies
+the links and choose them and shows them on the screen so that you can easily browse through the APIs by just clicking the links in there.
+The HAL browser makes it easy to consume the services which are exposed by Spring Boot Actuator.
+
+After adding the dependencies, re-start the application. One of the important things is, the actuator URLs are changing with the spring boot releases.
+-> http://localhost:8080/actuator
+-> http://localhost:8080/application
+
+We can see the actuator up and running on the above url. Also, there are a lot of other things the actuator provides, to enable that we
+need to configure a property in application.properties file.
+-> management.endpoints.web.exposure.include=*
+In here, we are enabling the web exposure -> the exposure over http of the all the management endpoints. One other things to consider,
+when we enable a lot of tracking / auditing / monitoring -> there would be a performance impact. One of the recommendation is to
+identify which of the things we want and to enable only those. Other option is to disable it in production and only use it in test env.
+
+Now if we restart and go to actuator endpoint, we'll see a lot of things. To browse through HAL browser goto-> http://localhost:8080
+We can use the HAL browser to browse through the actuator. Goto HAL browser, the explorer type in /actuator and we can see all the
+things related to actuator in there.
+
+To make the below dependencies work -
+        <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-rest-hal-browser</artifactId>
+			<version>3.3.9.RELEASE</version>
+		</dependency>
+
+We need to disable everything related to SWAGGER staring from dependencies to code. For some reason Swagger and actuator are not working
+maybe due version incompatibility or something.
