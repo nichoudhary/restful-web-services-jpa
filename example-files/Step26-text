@@ -1,0 +1,14 @@
+##### Section 6 | Step 26 - Versioning RESTful Service
+
+Why do you need versioning? Let's create a person class first, which contains name. Over the period of time, we realised that Person should
+have separate first name and last name. And so we created a PersonV2 with first and last name. However, the old consumers will expect a
+response with just name. How do we solve this problem? So, for the same API we need to have 2 different versions. With v1 returning just name
+and v2 returning first and last name.
+
+How do we create two diff versions of the same service/API? What are the different options available to us?
+
+One simple way of versioning services is by mapping different URIs to them.
+-> @GetMapping("/v1/person")
+-> @GetMapping("/v2/person")
+
+This is a basic way of versioning.
