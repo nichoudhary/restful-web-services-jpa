@@ -1,0 +1,20 @@
+##### Section 8 | Step 30 - Creating User Entity and some Test Data
+
+In this step, let's create user entity and user repository so that we can access the details of the user. While working
+on JPA, we want to keep things simple, hence we'll disable security.
+
+One other thing we also want to is we want to enable something called H2 console in the application.properties file so
+that we can see the data inside the table. Also enable show-SQL to see the sql generated in the logs.
+
+To goto h2-console => http://localhost:8080/h2-console
+DB url = jdbc:h2:mem:testdb -> this is to set the db url instead of using randomly generated value from logs
+
+We can see in the logs the structure of the created table -
+// create table user (id integer not null, birth_date timestamp, name varchar(255), primary key (id))
+
+Now, the first thing we'd want to do is to populate some data in the user table of the database. We can do that by creating
+a sql file in the resources folder. And then re-start the service.
+
+Since we're using Spring Boot version >= 2.5.0 Release, the application will fail to start, hence we need to add this
+in application.properties -> spring.jpa.defer-datasource-initialization=true
+
