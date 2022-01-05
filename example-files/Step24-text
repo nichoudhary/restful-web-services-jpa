@@ -1,0 +1,21 @@
+##### Section 6 | Step 24 - Implementing Static Filtering for RESTful Service
+
+In this video, we'll explore the idea of filtering. What is filtering? Let's understand with an example first. Let's say
+when we hit http://localhost:8080/users we are getting list of users with field (id, name, birthdate). Now, we we don't want
+want birthdate to come in our response, we call this concept filtering. From the attributes in our beans, we want to filter
+out certain things. We only want to send specific details to our end consumer, rather than sending everything. Let's say there's
+a password field in this. We wouldn't want to send password field in the response. So, we'd want to filter that out.
+
+Let's get on with the implementation. We won't modify the existing code. We'll create a new set of beans and we'll define a
+new controller and we will try and play with this concept of filtering.
+
+Now after creating SomeBean class, let's say field3 contains security info and we do not want to send field3 in the output.
+We need to filter-out field3 from the response. For this purpose we can use @JsonIgnore (com.fasterxml.jackson) for
+filtering out field properties.
+
+To put @JsonIgnore on many fields might be a very tedious task. So, for that purpose, we use @JsonIgnoreProperties(value={field1, field2})
+at class level. But this may not be a good approach as in this we are hardcoding the field names. If for some reason the field names
+are changed, then we'll have change those names in JsonIgnoreProperties(...) part also.
+
+This is called Static filtering, where we are filtering on the bean itself. If we want filter some field values in one scenario
+and another field values in another scenario then we'll have to look into something called dynamic filtering.
