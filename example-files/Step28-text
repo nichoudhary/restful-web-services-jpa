@@ -1,0 +1,26 @@
+##### Section 6 | Step 28 - Implementing Basic Authentication with Spring Security
+
+We created a lot of resources but none of them is secured yet. None of them is behind a user id or password. There are multiple ways
+of authenticating your RESTful web services. One of the basic ways is something called Basic Authentication.
+
+In Basic Authentication, we send a user id and password as part of our request. So, only when we provide those user ids and password,
+we'd be able to access the resource.
+
+There are other advanced forms of authentication like digest authentication, where the password digest is created and the digest is
+sent across. So, the actual password is not sent to the server. And the option is to use something called oAuth/oAuth2 authentication.
+
+In this step, we'll just focus on Basic Authentication. For this we just need to add a dependency -> spring-boot-starter-security. What
+would happen here is, Spring Boot Auto Configuration kicks up and sees that there is started security and it would automatically
+configure basic security for us.
+
+Now, after adding this dependency when you restart your application, in the logs you'll see something called
+"Using default security password: ...." and from now on this would be password. Each time application re-started, the password logged
+would be different. Make sure you're using the most recent password.
+
+Try and fire your request without authentication credentials (password), you'll get an error of unauthorized. Now, in the POSTMAN ->
+Go to Authorization and choose Basic Authentication, default username is user and password is what you see in the logs. After adding
+this, you'll see a successful response.
+
+If you don't like the fact that password is getting changed frequently, we can configure both username and  password in
+application.properties file.
+
