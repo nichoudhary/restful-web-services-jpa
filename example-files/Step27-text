@@ -1,0 +1,22 @@
+##### Section 6 | Step 27 - Versioning RESTful services : Header and Content Negotiation Approach
+
+In the last step, we looked at the basic way of versioning. One other option for versioning we have is to use the request parameter.
+Let's see how.
+
+Another option of versioning is header versioning.
+And Last method we'll look into is versioning by produces. This is however a header parameter but the way it is send in the request is
+a little different. "produces = application/vnd.company.app-v1+json". What does the produces actually do? So, the produces attribute
+is actually saying what is the kind of output this specific service/endpoint is giving. While making the request we put this value
+"application/vnd.company.app-v1+json" in the "Accept" as header.
+
+The factors we need to consider during versioning are :
+1. URI Pollution ---> During URI/API versioning and Request param versioning we are polluting the URI space.
+2. Misuse of HTTP Headers ---> During media-type and custom-header versioning [Request Header was never meant for versioning]
+3. Caching ---> Caching becomes difficult for media-type and custom-header versioning
+4. Can we execute the request on the browser? ---> for media-type and custom-header versioning, we can't execute on browser unless we have
+some kind of plugin to attach headers (Here talking about only GET requests)
+5. API documentation  ----> for media-type and custom-header versioning, documentation is generally a little tough when compared with
+other types of versioning.
+
+Honestly there is no perfect solution. We need to consider trading off b/w the factors for what is best for a given situation.
+So, before you build up your apis have your version strategy ready.
