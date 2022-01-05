@@ -1,0 +1,18 @@
+##### Section 8 | Step 31 - Updating GET Methods on User Resource to use JPA
+
+In this step, we want to create a service to retrieve all users. Right now we have the user resource which is talking
+to the in-memory list. We would want to make it talk to the embedded DB. Instead of modifying the User Resource we'll
+copy it as UserJPAResource and here we'll convert the DAOService to Repository.
+
+
+##### Section 8 | Step 32 - Updating POST and DELETE Methods on User Resource to use JPA
+
+In the last step, we converted the retrieve/get methods to use JPA. In this step, let's quickly convert the delete and
+create user methods also to be able to use JPA.
+
+Due to our test data in data.sql file, when we execute a create user request it would get
+->org.hibernate.exception.ConstraintViolationException: could not execute statement, it is due to that fact after
+the program starts, hibernate creates a sequence for primary key id starting with 1. And when it tries to insert user
+with id=1 while executing the create user request, it will show exception because id=1 is already present due to our
+test data. Hence we'll change ids of our test data to 1001, 1002, 1003 to avoid conflict.
+
