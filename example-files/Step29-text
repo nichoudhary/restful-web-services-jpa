@@ -1,4 +1,4 @@
-##### Section 6 | Step 29 - Overview of connecting RESTful service to JPA
+##### Section 8 | Step 29 - Overview of connecting RESTful service to JPA
 
 In this and the subsequent steps we will add JPA to our RESTful web services application. What we'll do over the next
 few steps is, we'll take this user and we'll actually make it something which is an entity managed by JPA and we will
