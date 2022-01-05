@@ -1,0 +1,30 @@
+##### Section 8 | Step 33 - Creating post Entity and Many to One Relationship with User Entity
+
+In this step, we'll be creating post entity which we talked about in the beginning.
+- Retrieve all posts for a user --> GET /user/{id}/posts
+- Create a post for a user      --> POST /user/{id}/posts
+- Retrieve details of a post    --> GET /user/{id}/posts/{post_id}
+
+One user will have many posts. So in the post class we'll provide @ManyToOne(fetch= FetchType.LAZY) mapping to user.
+We are using fetchType = Lazy so that this post class will not retrieve the details of the user unless it is asked for
+it to avoid extra details and memory consumption.
+
+We'll have configure user class well to add OneToMany mapping to a new attribute list of posts beacuse a user will also
+have an attribute List<Post> posts. We are using mappedBy in [OneToMany(mappedBy="column")] to say which is the field
+which is owning the relationship. We don't want to create relationship column in both user and post. We'd actually just
+create the relationship column of user in post.
+
+Now re-start the application and you'll see two tables.
+Put some dummy data for posts in data.sql file and after re-starting play around with H2 console.
+
+##### Section 8 | Step 34 - Implementing a GET service to retrieve all Posts of a user
+
+In this step, let's focus on writing a service to retrieve all posts for a specific user.
+
+So, there's one more thing which we need to do before we are able to execute the request. User has posts. In the user,
+we have a list of posts coming in. So, whenever we convert user to JSON the posts would come by default. So, in the
+user, there would be a tag called posts and the post of user would come by default which is perfect. But when I have a
+post, I only want the details oft the post. I don't want the details of the user.
+If I also try and want to get the details of the user. What would happen? A recursive loop would happen. The post would
+try to get the details of the user. User would try to get the details of the post and so on. So, it would cause problem,
+especially when object conversion is happening from object to JSON. So, we need to ignore this by putting @JsonIgnore.
