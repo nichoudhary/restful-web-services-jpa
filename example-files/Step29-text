@@ -1,0 +1,9 @@
+##### Section 6 | Step 29 - Overview of connecting RESTful service to JPA
+
+In this and the subsequent steps we will add JPA to our RESTful web services application. What we'll do over the next
+few steps is, we'll take this user and we'll actually make it something which is an entity managed by JPA and we will
+also create different user resources.
+
+We'll take this user resource and step by step convert it to use JPA instead of  using the userDAOService which is
+actually an static array list, we'll change that from this list to make it talk to a database. We'll have a new thing
+called userRepository which is created which would be the one talking to the database.
